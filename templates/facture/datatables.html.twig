@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'bill.title_list'|trans }}{% endblock %}
+{% block page_title %}{{ 'bill.title_list'|trans }}{% endblock %}
+{% block page_content %}
+{% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+        {% block box_before %}{% endblock %}
+        {% block box_body %}
+    <!-- Insert this where you want the table to appear -->
+    <div id="presidents">Loading...</div>
+        {% endblock %}
+{% endembed %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/datatables/js/datatables.js') }}"></script>
+    {% include 'facture/javascript.html.twig' %}
+
+{#    <script>
+        $(function() {
+            $('#presidents').initDataTables({{ datatable_settings(datatable) }});
+        });
+    </script>#}
+{% endblock %}
+

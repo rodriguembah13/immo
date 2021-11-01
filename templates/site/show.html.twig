@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Site{% endblock %}
+{% block navbarcontent %}
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ path('home') }}" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+    </li>
+</ul>
+{% endblock %}
+{% block page_content %}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">{{ 'label.site'|trans }}: {{ site.libelle }}</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <div class="btn-group btn-group-sm float-right">
+                    <a class="btn-sm btn btn-success float-right" href="{{ path('site_element_new',{'id':site.id}) }}"><i class="fa fa-plus"></i>
+                        {{ 'button.add'|trans({}, 'messages') }}</a>
+                    <a class="btn btn-warning float-right"
+                       href="{{ path('tenantpdf') }}" target="_blank"><i class="fa fa-print"></i> {{ 'button.print'|trans }}</a>
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+    <div class="card"><div class="card-body">
+    <div class="row">
+
+            {% for item in elements %}
+            <div class="col-md-2">
+                <a class="btn btn-app" href="{{ path('site_element_page', {'id': site.id, 'element': item.id }) }}">
+                    {% if item.status=="disponible" %}
+                    <span class="badge bg-warning">{{ item.status }}</span>
+                    {% elseif item.status=="travaux"  %}
+                        <span class="badge bg-danger">{{ item.status }}</span>
+                    {% else %}
+                        <span class="badge bg-success">{{ item.status }}</span>
+                        {% endif %}
+                    <i class="fas fa-home"></i> {{ item.number }}
+
+                </a>
+               {# <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">{{ item.number }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>price: {{ item.price }}</p>
+                        <p>numberRow: {{ item.numberRoon }}</p>
+                    </div>
+                </div>#}
+            </div>
+            {% endfor %}
+        </div>
+    </div></div>
+{% endblock %}

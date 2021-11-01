@@ -1,0 +1,48 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-plain">
+            <div class="card-body">
+                {{ form_row(form.name) }}
+                {{ form_row(form.phone) }}
+                {{ form_row(form.profession) }}
+                {{ form_row(form.numberChild) }}
+                {{ form_row(form.situation) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-plain">
+            <div class="card-body">
+                {{ form_row(form.cni) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.nationality) }}
+                {% if tenant.photo is defined and tenant.photo  is not null %}
+                    <img id="img_emp" class="img img-responsive img-thumbnail" style="width:140px;height: 140px"
+                         src="{{ asset('uploads/' ~ tenant.photo) }}" title="my image"
+                         alt="My image">
+                {% else %}  <img id="img_emp" class="img img-responsive img-thumbnail" style="width:140px;height: 140px"
+                                 src="{{ asset('build/images/default_avatar.png') }}" title="my image"
+                                 alt="My image">
+                {% endif %}
+                <div class="custom-file">
+                {{form_row(form.photo) }}
+                </div>
+                {#<div class="form-group">
+                    <!-- <label for="customFile">Custom File</label> -->
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                </div>#}
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="pull-right">
+    <button type="reset" class="btn btn-warning "><i class="nc-icon nc-simple-remove"></i> {{ 'button.cancel'|trans }}</button>
+    <button type="submit" class="btn btn-primary "> {{ 'button.next'|trans }} <i class="fas fa-arrow-right"></i></button>
+</div>
+{{ form_end(form) }}

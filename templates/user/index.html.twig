@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'label.user_list'|trans }}{% endblock %}
+
+{% block page_content %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">{{ 'label.user_list'|trans }}</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">{{ 'label.user_list'|trans }}</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="card">
+        <div class="card-header">
+            <div class="btn-group btn-group-sm float-right">
+                <a class="btn-sm btn btn-success" href="{{ path('user_new') }}"><i class="fa fa-plus"></i>
+                    {{ 'button.add'|trans({}, 'messages') }}</a>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="table-striped table-responsive" id="users">{{ 'loading'|trans({}, 'messages') }}</div>
+        </div>
+    </div>
+{% endblock %}
+ {% block controlsidebar %}
+     <div class="p-3">
+     <h5>Documentation</h5>
+     <p>Section user</p>
+     </div>
+ {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        $(function () {
+            $('#users').initDataTables({{ datatable_settings(datatable) }});
+        });
+    </script>
+    {% include 'user/javascript.html.twig' %}
+{% endblock %}
+

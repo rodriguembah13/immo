@@ -1,0 +1,41 @@
+{{ form_start(form) }}
+<div class="">
+    <div class="form-group">
+    {{ form_row(form.tenant) }}
+    </div>
+    {{ form_row(form.typeRental) }}
+    <div id="year"> {{ form_row(form.year) }}</div>
+    <div class="form-group" id="month">
+        <label for="listmonth">{{ 'label.month'|trans }}</label>
+        <div class="row" id="listmonth">
+            {% for local in months %}
+            <div class="col-md-3">
+                <label class="control-label" for="{{ local }}">{{ local }}</label>
+                <div class="control-group">
+                    <input id="{{ local }}" data-amount="{{ local }}" type="checkbox" name="{{ local }}"
+                           value="{{ local }}">
+                </div>
+            </div>
+
+        {% endfor %}</div>
+    </div>
+    <div class="form-group" id="day">
+        <label class="" for="listday">{{ 'label.days'|trans }}</label>
+        <div class="row" id="listday">
+            {% for day in days %}
+                <div class="col-md-3">
+                    <label class=" control-label">{{ day.name }} - {{ day.number }}</label>
+                    <div class="control-group">
+                        <input data-amount="{{ day.name }}" type="checkbox" name="{{ day.number }}"
+                               value="{{ day.number }}">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {{ form_row(form.amount) }}
+</div>
+<br>
+{# {{ form_widget(form) }} #}
+<button class="btn btn-primary" id="save_rental" type="button">{{ 'button.save'|trans }}</button>
+{{ form_end(form) }}

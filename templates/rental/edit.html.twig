@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Rental{% endblock %}
+
+{% block page_content %}
+    {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+        {% block box_before %}{% endblock %}
+        {% block box_body %}
+
+    {{ include('rental/_form.html.twig', {'button_label': 'Update'}) }}
+
+        {% endblock %}
+
+    {% endembed %}
+{% endblock %}

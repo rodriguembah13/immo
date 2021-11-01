@@ -1,0 +1,72 @@
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="/js/fos_js_routes.js"></script>
+<script type="text/javascript">
+    var id_=0;
+        $(function () {
+        $('#depense_search').click(function () {
+            $("#overlay").fadeIn(300);
+            $.ajax({
+                url: "{{ path('search_depense_ajax') }}",
+                type: "GET",
+                dataType: "JSON",
+                data: {
+                    item1: $("#form_item1 option:selected").val(),
+                    item2: $("#form_item2 option:selected").val(),
+                    item3: $("#form_item3").val(),
+                    item4: $("#form_item4").val(),
+
+                },
+                success: function (data) {
+                  console.log(data);
+                    var table = $("#table_depense>tbody");
+                    table.html('');
+                    for ($i=0;$i< data.length; $i++){
+                         id_= data[$i].id;
+                         var url= Routing.generate('depense_edit',{id: id_});
+                        $("#table_depense>tbody:last").append("<tr id='" + data[$i].id + "'><td><span class=''>" + data[$i].id + "</span></td><td>" + data[$i].libelle + "</td><td>" + data[$i].local + "</td><td>" + data[$i].type + "</td><td>" + data[$i].amount + "</td><td>" + data[$i].dateAchat + "</td><td>" + data[$i].datecreated + "</td><td><div class='btn-group btn-group-sm'><a href='"+url+"' class='btn btn-sm btn-success'><i class='fa fa-edit'></i></a><a class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></a></div></td></tr>");
+                    }
+                   $("#overlay").fadeOut(300);
+                },
+                error: function (err) {
+                    $("#overlay").fadeOut(300);
+                    swal("Error!", "Une erreur s'est produite: verifier les parametres.", "error");
+                }
+            });
+
+        });
+    });
+    function getItem_id(id) {
+        $("#item_id").val(id);
+        $("#item_name").text(id);
+        swal({
+                title: "Are you sure?",
+                text: "Are you sure you want to delete this item?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function(){
+                $("#overlay").fadeIn(300);
+                $.ajax({
+                    url: "{{ path('rental_delete_ajax') }}",
+                    type: "GET",
+                    dataType: "JSON",
+                    data: {
+                        item_id: id,
+                    },
+                    success: function (data) {
+                        $("#overlay").fadeOut(300);
+                        swal("Deleted!", "Your item has been deleted.", "success");
+                        window.location.reload(true);
+                    },
+                    error: function (err) {
+                        $("#overlay").fadeOut(300);
+                        swal("Error!", "Une erreur s'est produite: erifier les parametres.", "error");
+                    }
+                });
+
+            })
+    }
+</script>

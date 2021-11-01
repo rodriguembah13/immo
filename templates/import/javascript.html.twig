@@ -1,0 +1,25 @@
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#save_import').click(function () {
+            $.ajax({
+                url: "{{ path('import_ajax') }}",
+                type: "GET",
+                dataType: "JSON",
+                data: {
+                },
+                success: function (data) {
+                    window.open( "{{ path('catalogueproduct') }}",'_parent');
+                },
+                error: function (err) {
+                    alert("An error ocurred while loading data ...");
+                    setTimeout(function () {
+                        $("#overlay").fadeOut(300);
+                    }, 500);
+                }
+            });
+        });
+
+    });
+</script>
+

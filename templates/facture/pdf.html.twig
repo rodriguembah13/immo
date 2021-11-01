@@ -1,0 +1,165 @@
+<style>
+    @page {
+        header: tocHTMLFooterEven; /* display <htmlpageheader name="MyCustomHeader"> on all pages */
+        footer: tocHTMLFooterEven; /* display <htmlpagefooter name="MyCustomFooter"> on all pages */
+
+    }
+    .col-md-4 {
+        position: relative;
+        width: 100%;
+        padding-right: 1px;
+        padding-left: 1px;
+    }
+
+    .col-md-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+
+    .col-md-6 {
+        width: 300px;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    table {font-family: 'DejaVu Sans Condensed'; font-size: 9pt; line-height: 1.2;
+        margin-top: 2pt; margin-bottom: 5pt;
+        border-collapse: collapse; }
+
+    thead {	font-weight: bold; vertical-align: bottom; }
+    tfoot {	font-weight: bold; vertical-align: top; }
+    thead td { font-weight: bold; }
+    tfoot td { font-weight: bold; }
+
+    .headerrow td, .headerrow th { background-gradient: linear #b7cebd #f5f8f5 0 1 0 0.2;  }
+    .footerrow td, .footerrow th { background-gradient: linear #b7cebd #f5f8f5 0 1 0 0.2;  }
+
+    th {	font-weight: bold;
+        vertical-align: top;
+        padding-left: 2mm;
+        padding-right: 2mm;
+        padding-top: 0.5mm;
+        padding-bottom: 0.5mm;
+    }
+
+    td {	padding-left: 2mm;
+        vertical-align: top;
+        padding-right: 2mm;
+        padding-top: 0.5mm;
+        padding-bottom: 0.5mm;
+        font-size: 15px;
+    }
+
+    th p { margin:0pt;  }
+    td p { margin:0pt;  }
+
+    table.widecells td {
+        padding-left: 5mm;
+        padding-right: 5mm;
+    }
+    table.tallcells td {
+        padding-top: 3mm;
+        padding-bottom: 3mm;
+    }
+
+
+    .row{
+        margin-right: 1px;
+        margin-left: 1px;
+    }
+    .grad{
+        border: 1px solid #ffffff;
+        background-color: #ffffff;
+    }
+    h4 {
+        font-family: sans;
+        font-weight: bold;
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+    }
+    div_{
+        padding:3px;
+    }
+    p{
+        font-size: 13px;
+        margin: 1px;
+    }
+    .bpmTopic{
+        border: #333333 solid 1px;
+        width: 100%;
+    }
+    .headtable{
+        background-color: #1e2b37;
+        color: #f6fffe;
+    }
+    .bpmTopic td, .bpmTopic th  {	border-top: 1px solid #333;border-right: 1px solid #333333 }
+    .bpmTopicC td, .bpmTopicC th  {	border-top: 1px solid #333; }
+    .bpmTopnTail td, .bpmTopnTail th  {	border-top: 1px solid #FFFFFF; }
+    .bpmTopnTailC td, .bpmTopnTailC th  {	border-top: 1px solid #FFFFFF; }
+</style>
+<div class="row">
+    <div style="float: left; width: 32%;text-align: center">
+        <p style="text-transform: uppercase">{{ configuration.name }}</p>
+        <p style="text-transform: uppercase">Tel: {{ configuration.phone }}</p>
+        <p style="text-transform: uppercase">Bp: {{ configuration.bp }}</p>
+    </div>
+    <div style="text-align: center;width: 32%;float: right">
+        <img id="img_emp" style="text-align: center;margin-top: 1px" src="{{ path }}" title="my image"
+             alt="My image"></td>
+    </div>
+</div>
+
+<p style="margin-bottom:15px;text-transform: uppercase;text-align: center ;font-size: 25px;font-weight: bold;color: #0B7FC7">Facture de loyer N° {{ facture.id}} </p>
+<hr>
+<div class="row">
+    <div style="float: left; width: 32%;text-align: center">
+<p style="text-align: left;margin-top: 2px;font-size: 14px">Nom du locataire: <b>{{ facture.tenant }}</b></p>
+<p style="text-align: left;margin: 0">Tel: {{ facture.tenant.phone }} Bp:{{ facture.tenant.email }}</p>
+    </div>
+    <div style="float: right; width: 32%;text-align: center">
+    <p style="text-align: center;margin: 0;font-size: 24px">Montant: {{ facture.amount }}</p>
+        <p style="text-align: center;margin: 0;font-size: 14px">Date facture: {{ facture.createdAt | date('d-m-y')}}</p>
+    </div>
+</div>
+        <br>
+<table class="table bpmTopic" style="width: 100%;">
+    <thead>
+    <tr class="th-head">
+        <th style="width: 5%;">#</th>
+        <th style="width: 25%;">Rental</th>
+        <th style="width: 20%;">Amount</th>
+        <th style="width: 40%;">Amount Due<br></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for facture_item in facture.factureItems %}
+        <tr>
+            <td class="td" style="width: 5%;">{{ loop.index }}</td>
+            <td class="td" style="width: 20%;">{{ facture_item.rental }}</td>
+            <td class="td" style="width: 40%;">{{ facture_item.amount }}</td>
+            <td class="td" style="width: 10%;">{{ facture_item.amountDue }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="2" style="font-weight: bold;text-align: right">Total</td>  <td colspan="1" style="font-weight: bold">{{ facture.amount}}</td><td colspan="1" style="font-weight: bold">{{ facture.amountDue  }}</td>
+    </tr>
+    </tbody>
+</table>
+<div class="row">
+    <div style="float: left; width: 48%">
+        <p style="font-size: 16px"> <u>Signature du locataire </u></p>
+    </div>
+    <div style="float: right; width: 50%">
+        <p style="font-size: 16px"> <u>Signature du Directeur </u></p>
+    </div>
+</div>
+<htmlpagefooter name="tocHTMLFooterEven">
+    <table width="100%" style="border-top: 1px solid #000000; vertical-align: top; font-family: sans; font-size: 8pt;"><tr>
+            <td width="33%"></td>
+            <td width="33%" align="center"><span style="font-size:12px;">{PAGENO}/{nbpg}</span></td>
+            <td width="33%" style="text-align: right;">{DATE Y-m-d}</td>
+        </tr></table>
+</htmlpagefooter>
+</body>

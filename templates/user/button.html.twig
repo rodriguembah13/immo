@@ -1,0 +1,7 @@
+<div class="btn-group btn-group-sm">
+    <a class="btn btn-primary btn" href="{{ path('user_edit', {'id': row.id}) }}"><i
+                class="fa fa-edit"></i></a>
+    <a class="btn btn-danger btn" onclick='getItem_id({{ row .id }})' href="#"
+       id="delete_" data-toggle="modal" data-target="#deleteModa"><i
+                class="fa fa-trash"></i></a>
+</div>

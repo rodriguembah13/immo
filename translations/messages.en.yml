@@ -1,0 +1,105 @@
+rental:
+  tilte_list: Liste de locations
+  title_new: Ajouter une nouvelle location
+  table:
+    tenant: Locataire
+    type: Periodicité du loyer
+    amount: Montant
+    amount_due: Montant restant
+    year: Année
+    month: Mois
+    day: Jour
+    locals: locales
+    echeance: 'messages'
+  title_detail: 'Détail de la location'
+  title_make_all: 'Génerer tous les locations'
+  tilte_list_relance: 'Liste des locations a relancer'
+tenant:
+  tilte_list: Liste de locataires
+  title_new: Ajouter un nouveau Locataire
+  table:
+    name: Nom complet
+    number_child: Nombre d'enfants
+    profession: Profession
+    cni: Cni
+    nationality: Nationalité
+    phone: Téléphone
+    email: E-mail
+    type_rental: Type de location
+    amount: Montant
+    local: Locale
+    photo: 'photo'
+  tilte_detail: 'détail du locataire'
+
+local:
+  title_list: Liste de locaux
+  tilte_new: Ajouter un local
+  table:
+    numberRoom: Nombre de piéce
+    adresse: Adresse
+    consitance: Consistance
+    number: numéro
+    position: Position
+    price: Prix
+  title_detail: 'Détail du local'
+bill:
+  title_list: Liste de factures
+  title_new: Ajouter une facture
+  table:
+    tenant: Locataire
+    rental: Location
+    amount: Montant
+    amount_due: Montant restant
+  tilte_detail: 'Détail de la facture'
+depense:
+  title_list: Liste des Charges et frais
+  title_type_list: Liste des Type de charges
+  title_new: Ajouter une charge
+  title_type_new: Ajouter un type charge
+  table:
+    libelle: libelle
+    amount: Montant
+    typedepense: Type de charge
+    local: Local
+    datedachat: Date d'achat
+  title_type_edit: 'Modifier type de charge'
+  title_edit: 'Modifier charge'
+menu:
+  tenant: Locataires
+  local: Locaux
+  rental: Locations
+  rental_list: Liste locations
+  rental_relance: Locations a relancer
+  generate_rental_one: Générer une location
+  generate_rental_all: Générer toutes les locations
+  bill: Factures
+  depenserevenu:
+    header: Charges & Frais
+    type: Type de Depense
+    depense: Depenses
+  bill_list: Liste des factures
+  bill_new: Nouvelle facture
+  rapport:
+    header: Rapport
+    taux_occupation: taux d'occupation
+    depense: Depenses
+  logout: Se déconnecter
+  login: Se connecter
+  dashboard: Dashboard
+  search: chercher
+paginator:
+  current: current
+  previous: Précédent
+  next: Suivant
+tenat:
+  title_detail: 'Detail locataire'
+dashboard:
+  tenant: Locataires
+  bill: Factures
+  local: Locals
+action:
+  sign_in: Se connecter
+login:
+  username: Identifiant
+  password: Mot de passe
+  title: Login

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Rental{% endblock %}
+{% block page_title %}{{ 'label.rental_new'|trans }}{% endblock %}
+{% block page_content %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">{{ 'label.rental_new'|trans }}</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">{{ 'label.rental_list'|trans }}</a></li>
+                        <li class="breadcrumb-item active">{{ 'label.rental_new'|trans }}</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+<div class="card">
+    <div class="card-body">
+                {{ include('rental/_form.html.twig', {'button_label': 'Save'}) }}
+    </div></div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'default/javascript.html.twig' %}
+{% endblock %}

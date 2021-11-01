@@ -1,0 +1,113 @@
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="/js/fos_js_routes.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $('#rental_contract_amount').val(0.0);
+        $('#day').hide();
+        $('#month').hide();
+        $('#year').hide();
+        $('#rental_typeRental').change(function () {
+            if ($('#rental_typeRental option:selected').val()=="nuitee"){
+                $('#day').show(300);
+                $('#month').hide();
+                $('#year').hide();
+            }
+            if ($('#rental_typeRental option:selected').val()=="mentionatly"){
+                $('#month').show(300);
+                $('#day').hide();
+                $('#year').show(300);
+            }
+        })
+        $("input[type=checkbox]").change(function () {
+            if ($(this).is(':checked')){
+                //alert($(this).attr('data-amount'))
+                var alltotal = parseFloat($('#rental_contract_amount').val()) + parseInt($(this).attr('data-amount'));
+                $('#rental_contract_amount').val(alltotal);
+            }else {
+                var alltotal = parseFloat($('#rental_contract_amount').val()) - parseInt($(this).attr('data-amount'));
+                $('#rental_contract_amount').val(alltotal);
+            }
+        })
+        $('#save_ct').click(function () {
+           // $('#save_ct').attr("disabled",true);
+            $(this).off('click')
+            var locals=[];
+            $("input[type=checkbox]:checked").each(function () {
+                locals.push(this.value);
+            });
+            $.ajax({
+                url: "{{ path('tenant_save_contrat') }}",
+                type: "POST",
+                dataType: "JSON",
+                data: {'locals':locals,'amount': $('#rental_contract_amount').val(),'tenant':$('#tenant').val(),
+                    'type':$('#rental_contract_typeRental  option:selected').val()},
+                success: function (data) {
+
+                    window.open( Routing.generate('tenant_index'),'_parent');
+                },
+                error: function (err) {
+                    alert("An error ocurred while loading data ...");
+                    setTimeout(function () {
+                        $("#overlay").fadeOut(300);
+                    }, 500);
+                }
+            });
+        });
+      //  $('#facture_amountDue').val(data);
+        $('#facture_tenant').change(function () {
+            $.ajax({
+                url: "{{ path('tenant_get_amountDue') }}",
+                type: "GET",
+                dataType: "JSON",
+                data: {
+                    tenant: $('#facture_tenant option:selected').val(),
+                },
+                success: function (data) {
+                    console.log(data)
+                    $('#facture_amountDue').val(data);
+                },
+                error: function (err) {
+                    alert("An error ocurred while loading data ...");
+                    setTimeout(function () {
+                        $("#overlay").fadeOut(300);
+                    }, 500);
+                }
+            });
+        });
+        $('#save_rental').click(function () {
+            var locals=[];
+            if ($('#rental_typeRental option:selected').val()=="nuitee"){
+                $("#listday input[type=checkbox]:checked").each(function () {
+                    locals.push(this.value);
+                });
+            }
+            if ($('#rental_typeRental option:selected').val()=="mentionatly"){
+                $("#listmonth input[type=checkbox]:checked").each(function () {
+                    locals.push(this.value);
+                });
+            }
+            $.ajax({
+                url: "{{ path('rental_save_ajax') }}",
+                type: "POST",
+                dataType: "JSON",
+                data: {'item':locals,'amount': $('#rental_amount').val(),'tenant':$('#rental_tenant option:selected').val(),
+                    'type':$('#rental_typeRental option:selected').val(),'year':$('#rental_year option:selected').val()},
+                success: function (data) {
+
+                    setTimeout(function () {
+                        $("#overlay").fadeOut(300);
+                    }, 500);
+                    window.open( Routing.generate('rental_index'),'_parent');
+                },
+                error: function (err) {
+                    alert("An error ocurred while loading data ...");
+                    setTimeout(function () {
+                        $("#overlay").fadeOut(300);
+                    }, 500);
+                }
+            });
+        })
+    });
+
+</script>

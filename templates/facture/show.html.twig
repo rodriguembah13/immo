@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture{% endblock %}
+{% block page_title %}{{ 'bill.tilte_detail'|trans }}{% endblock %}
+{% block page_actions %}
+    <div class="breadcrumb" style="top: 2px">
+        <div class="btn-group pull-right">
+            <a href="{{ path('facture_index') }}" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Back </a>
+            <a href="{{ path('printfacturepdf',{'id': facture.id}) }}" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-print"></i> Print </a>
+        </div>
+    </div>
+{% endblock %}
+{% block page_content %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">{{ 'label.facture_detail'|trans }}</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                   {# <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">{{ 'label.facture_detail'|trans }}</li>
+                    </ol>#}
+                    <div class="btn-group float-sm-right">
+                        <a href="{{ path('facture_index') }}" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Back </a>
+                        <a href="{{ path('printfacturepdf',{'id': facture.id}) }}" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-print"></i> Print </a>
+                    </div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <div class="card">
+        <div class="card-body">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>{{ 'dt.columns.tenant'|trans }}</th>
+                <td>{{ facture.tenant }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.amount'|trans }}</th>
+                <td>{{ facture.amount }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.amount_due'|trans }}</th>
+                <td>{{ facture.amountDue }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.createdAt'|trans }}</th>
+                <td>{{ facture.createdAt ? facture.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    <br>
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title"> {{ 'label.facture_detail'|trans }}</h5>
+    </div>
+    <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>{{ 'bill.table.rental'|trans }}</th>
+                        <th>{{ 'bill.table.amount'|trans }}</th>
+                        <th>{{ 'bill.table.amount_due'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in facture.factureItems %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.rental }}</td>
+                            <td>{{ item.amount }}</td>
+                            <td>{{ item.amountDue }}</td>
+
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </div></div>
+{% endblock %}

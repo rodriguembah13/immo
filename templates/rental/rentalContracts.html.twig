@@ -1,0 +1,3 @@
+{% for r in row.tenant.rentalContracts %}
+    <span class="btn btn-success btn-sm">{{ r.locals | join(';') }}</span>
+{% endfor %}

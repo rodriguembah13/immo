@@ -1,0 +1,160 @@
+<style>
+    @page {
+        header: tocHTMLFooterEven; /* display <htmlpageheader name="MyCustomHeader"> on all pages */
+        footer: tocHTMLFooterEven; /* display <htmlpagefooter name="MyCustomFooter"> on all pages */
+
+    }
+    .col-md-4 {
+        position: relative;
+        width: 100%;
+        padding-right: 1px;
+        padding-left: 1px;
+    }
+
+    .col-md-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+
+    .col-md-6 {
+        width: 300px;
+        position: relative;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    table {font-family: 'DejaVu Sans Condensed'; font-size: 9pt; line-height: 1.2;
+        margin-top: 2pt; margin-bottom: 5pt;
+        border-collapse: collapse; }
+
+    thead {	font-weight: bold; vertical-align: bottom; }
+    tfoot {	font-weight: bold; vertical-align: top; }
+    thead td { font-weight: bold; }
+    tfoot td { font-weight: bold; }
+
+    .headerrow td, .headerrow th { background-gradient: linear #b7cebd #f5f8f5 0 1 0 0.2;  }
+    .footerrow td, .footerrow th { background-gradient: linear #b7cebd #f5f8f5 0 1 0 0.2;  }
+
+    th {	font-weight: bold;
+        vertical-align: top;
+        padding-left: 2mm;
+        padding-right: 2mm;
+        padding-top: 0.5mm;
+        padding-bottom: 0.5mm;
+    }
+
+    td {	padding-left: 2mm;
+        vertical-align: top;
+        padding-right: 2mm;
+        padding-top: 0.5mm;
+        padding-bottom: 0.5mm;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    th p { margin:0pt;  }
+    td p { margin:0pt;  }
+
+    table.widecells td {
+        padding-left: 5mm;
+        padding-right: 5mm;
+    }
+    table.tallcells td {
+        padding-top: 3mm;
+        padding-bottom: 3mm;
+    }
+    .row{
+        margin-right: 1px;
+        margin-left: 1px;
+    }
+    .grad{
+        border: 1px solid #ffffff;
+        background-color: #ffffff;
+    }
+    h4 {
+        font-family: sans;
+        font-weight: bold;
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+    }
+    div_{
+        padding:3px;
+    }
+    p{
+        font-size: 13px;
+        margin: 1px;
+    }
+    .bpmTopic{
+        border: #333333 solid 1px;
+        width: 100%;
+    }
+    .headtable{
+        background-color: #1e2b37;
+        color: #f6fffe;
+    }
+    .bpmTopic td, .bpmTopic th  {	border-top: 1px solid #333;border-right: 1px solid #333333 }
+    .bpmTopicC td, .bpmTopicC th  {	border-top: 1px solid #333; }
+    .bpmTopnTail td, .bpmTopnTail th  {	border-top: 1px solid #FFFFFF; }
+    .bpmTopnTailC td, .bpmTopnTailC th  {	border-top: 1px solid #FFFFFF; }
+</style>
+<div class="row">
+    <div style="float: left; width: 32%;text-align: left">
+        <p style="text-transform: uppercase">Ets Gemo sarl</p>
+        <p style="text-transform: uppercase">N° Contrib</p>
+        <p style="text-transform: uppercase">P.O BOX</p>
+        <p style="text-transform: uppercase">Phone: 237 675066919</p>
+    </div>
+    <div style="text-align: center;width: 32%;float: left">
+        {# <img id="img_emp" style="height: 80px;text-align: center;width: 80px;margin-top: 1px" src="{{ path }}" title="my image"
+             alt="My image">#}
+        <br>
+    </div>
+    <div style="float: left; width: 32%;text-align: center">
+        {#<p style="text-transform: uppercase">Republic of cameroon</p>
+        <p style="text-transform: uppercase">Peace-work-fatherland</p>
+        <p style="text-transform: uppercase">Ministry of secondary education </p>#}
+    </div>
+</div>
+{#<p style="text-align: center;margin-top: 2px;font-size: 14px">Entrepot</p>
+<p style="text-align: center;margin: 0">Tel: 675896325 Bp:8796</p>#}
+<hr>
+<p style="margin-bottom:15px;text-transform: uppercase;text-align: center ;font-size: 25px;font-weight: bold;color: #0B7FC7">Liste des locataires </p>
+
+<table class="table bpmTopic" style="width: 100%;">
+    <thead>
+    <tr class="th-head">
+        <th style="width: 5%;"></th>
+        <th style="width: 30%;">Nom</th>
+        <th style="width: 15%;">Téléphone<br></th>
+        <th style="width: 20%;">Email<br></th>
+        <th style="width: 15%;">Situation</th>
+        <th style="width: 15%;">Profession</th>
+        <th style="width: 10%;">Nationality</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for c in tenants %}
+        <tr>
+            <td class="td" style="width: 5%;">{{ loop.index }}</td>
+            <td class="td" style="width: 30%;">{{ c.name|upper}}</td>
+            <td class="td" style="width: 15%;">{{ c.phone }}</td>
+            <td class="td" style="width: 20%;">{{ c.email}}</td>
+            <td class="td" style="width: 15%;">{{ c.situation }}</td>
+            <td class="td" style="width: 15%;">{{ c.profession }}</td>
+            <td class="td" style="width: 10%;">{{ c.nationality }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<htmlpagefooter name="tocHTMLFooterEven">
+    <table width="100%" style="border-top: 1px solid #000000; vertical-align: top; font-family: sans; font-size: 8pt;"><tr>
+            <td width="33%"></td>
+            <td width="33%" align="center"><span style="font-size:12px;">{PAGENO}/{nbpg}</span></td>
+            <td width="33%" style="text-align: right;">{DATE Y-m-d}</td>
+        </tr></table>
+</htmlpagefooter>{##}
+
+{#
+<tocpagebreak paging="on" links="on" toc-odd-header-name="html_tocHTMLHeader" toc-even-header-name="html_tocHTMLHeaderEven" toc-odd-footer-name="html_tocHTMLFooter" toc-even-footer-name="html_tocHTMLFooterEven" toc-odd-header-value="on" toc-even-header-value="on" toc-odd-footer-value="on" toc-even-footer-value="on" toc-preHTML="&lt;h2&gt;Contents&lt;/h2&gt;" toc-bookmarkText="Content list" resetpagenum="1" pagenumstyle="A" odd-header-name="html_myHTMLHeader" odd-header-value="on" even-header-name="html_myHTMLHeaderEven" even-header-value="ON" odd-footer-name="html_myHTMLFooter" odd-footer-value="on" even-footer-name="html_myHTMLFooterEven" even-footer-value="on" outdent="2em" toc-pagenumstyle="i" />
+#}

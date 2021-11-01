@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'label.rental_list'|trans }}{% endblock %}
+
+{% block page_content %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">{{ 'label.rental_list'|trans }}</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">{{ 'label.rental_list'|trans }}</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="card">
+        <div class="card-header">
+            <div class="btn-group btn-group-sm float-right">
+            <a class="btn-sm btn btn-success" href="{{ path('rental_new') }}"><i class="fa fa-plus"></i>
+                {{ 'button.add'|trans({}, 'messages') }}</a>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="table-striped table-responsive" id="rentals">{{ 'loading'|trans({}, 'messages') }}</div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        $(function () {
+            $('#rentals').initDataTables({{ datatable_settings(datatable) }});
+        });
+    </script>
+    {% include 'rental/javascript.html.twig' %}
+{% endblock %}

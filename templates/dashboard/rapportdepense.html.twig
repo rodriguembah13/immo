@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block page_title %} Rapport {% endblock %}
+{% block page_subtitle %}  {% endblock %}
+
+{% block page_content %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">{{ 'label.rapport_revenus_depense'|trans }}</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="card">
+        <div class="card-header text-right">
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <th>Intitulé</th>
+                <th>Montant</th>
+                <th>Montant restant</th>
+
+                </thead>
+                <tbody>
+                {% for rapport in rapports %}
+                    <tr>
+                        <td>{{ rapport.item1 }}</td>
+                        <td>{{ rapport.item2 }}</td>
+                        <td>{{ rapport.item3 }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td class="text-right">Total revenus:</td>
+                    <td>{{ totalrevenus }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Total Depense:</td>
+                    <td>{{ totaldepense }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Solde:</td>
+                    <td>{{ solde }}</td>
+                </tr>
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+

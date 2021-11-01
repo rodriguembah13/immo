@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'label.rental_relance'|trans }}{% endblock %}
+{% block page_title %}{{ 'label.rental_relance'|trans }}{% endblock %}
+{% block page_content %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">{{ 'label.rental_relance'|trans }}</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">{{ 'label.rental_relance'|trans }}</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"></h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="table-striped table-responsive" id="rentals">{{ 'loading'|trans({}, 'messages') }}</div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        $(function () {
+            $('#rentals').initDataTables({{ datatable_settings(datatable) }});
+        });
+    </script>
+    {% include 'rental/javascript.html.twig' %}
+{% endblock %}
+

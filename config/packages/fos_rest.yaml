@@ -1,0 +1,46 @@
+# Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
+#fos_rest: null
+#    param_fetcher_listener:  true
+#    allowed_methods_listener:  true
+#    routing_loader: true
+#    view:
+#        view_response_listener:  true
+#    exception:
+#        codes:
+#            App\Exception\MyException: 403
+#        messages:
+#            App\Exception\MyException: Forbidden area.
+#    format_listener:
+#        rules:
+#            - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json, html ] }
+#fos_rest:
+#  body_listener:
+#    array_normalizer:
+#      service: fos_rest.normalizer.camel_keys
+#      forms: true
+#  view:
+#    view_response_listener:  true
+#  format_listener:
+#    rules:
+#      - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json ] }
+
+fos_rest:
+#  routing_loader:
+#    default_format: html
+#    include_format: true
+
+  format_listener:
+    enabled: true
+    rules:
+      - { path: '^/api', prefer_extension: true, fallback_format: json, priorities: [ json ] }
+      - { path: '^/user', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+      - { path: '^/', priorities: ['html'], fallback_format: html, prefer_extension: false }
+  view:
+    view_response_listener: true
+  #  body_converter:
+  #    enabled: true
+  #  param_fetcher_listener: force
+  body_listener:
+  #array_normalizer:
+  #service: fos_rest.normalizer.camel_keys
+  #forms: true

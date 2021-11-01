@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Local{% endblock %}
+{% block page_title %}{{ 'local.title_detail'|trans }}{% endblock %}
+{% block page_content %}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">{{ 'label.depense_new'|trans }}</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">{{ 'label.depense_list'|trans }}</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="card">
+    <div class="card-body">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ local.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'local.table.consitance'|trans }}</th>
+                <td>{{ local.consitance }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'local.table.numberRoom'|trans }}</th>
+                <td>{{ local.numberRoon }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'local.table.adresse'|trans }}</th>
+                <td>{{ local.adresse }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'local.table.number'|trans }}</th>
+                <td>{{ local.number }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ local.status }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'local.table.price'|trans }}</th>
+                <td>{{ local.price }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ local.createdAt ? local.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ local.updatedAt ? local.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div></div>
+{% endblock %}

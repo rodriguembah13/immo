@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rental{% endblock %}
+{% block page_title %}{{ 'label.depense_show'|trans }}{% endblock %}
+{% block page_content %}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">{{ 'label.depense_show'|trans }}</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">{{ 'label.depense_list'|trans }}</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<div class="card">
+    <div class="card-body">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>{{ 'dt.columns.tenant'|trans }}</th>
+                <td>{{ rental.tenant }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ rental.status }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.type'|trans }}</th>
+                <td>{{ rental.typeRental }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.locals'|trans }}</th>
+                <td>
+                {% for r in rental.tenant.rentalContracts %}
+                    <span class="btn btn-success btn-sm">{{ r.locals | join(';') }}</span>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.amount'|trans }}</th>
+                <td>{{ rental.amount }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.year'|trans }}</th>
+                <td>{{ rental.year }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.month'|trans }}</th>
+                <td>{{ rental.month }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.echeance'|trans }}</th>
+                <td>{{ rental.endDate ? rental.endDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'dt.columns.createdAt'|trans }}</th>
+                <td>{{ rental.createdAt ? rental.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div></div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'rental/javascript.html.twig' %}
+{% endblock %}

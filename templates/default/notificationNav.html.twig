@@ -1,0 +1,56 @@
+<li class="header-notification">
+    <a href="#!">
+        <i class="ti-bell"></i>
+        <span class="badge bg-c-pink">{{ total }}</span>
+    </a>
+    <ul class="show-notification">
+        <li>
+            <h6>Notifications</h6>
+            <label class="label label-danger">{{ notifications|length }}</label>
+        </li>
+        {% for notice in notifications %}
+            {% if notice.type == 'perimable' %}
+        <li>
+            <a  href="{{ path('w_p_location_perime') }}" >
+            <div class="media bg-danger">
+               {# <img class="d-flex align-self-center img-radius"
+                     src="{{ asset('/assets/images/avatar-4.jpg') }}" alt="Generic placeholder image">#}
+                <div class="media-body">
+                    <h5 class="notification-user">{{ notice.icon }} </h5>
+                    <p class="notification-msg">{{ notice.message }}</p>
+                   {# <span class="notification-time">30 minutes ago</span>#}
+                    <span class="ti-check"><a></a></span>
+                </div>
+            </div>
+            </a>
+        </li>
+            {% elseif notice.type == 'alertestock'  %}
+                <li>
+                    <a href="{{ path('stockalert') }}" >
+                        <div class="media bg-warning">
+                            <div class="media-body">
+                                <h5 class="notification-user">{{ notice.icon }} </h5>
+                                <p class="notification-msg">{{ notice.message }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            {% else %}
+            <li>
+                <a  href="{{ path('w_p_location_perime') }}" >
+                    <div class="media bg-danger">
+                        {# <img class="d-flex align-self-center img-radius"
+                     src="{{ asset('/assets/images/avatar-4.jpg') }}" alt="Generic placeholder image">#}
+                        <div class="media-body">
+                            <h5 class="notification-user">{{ notice.icon }} </h5>
+                            <p class="notification-msg">{{ notice.message }}</p>
+                            {# <span class="notification-time">30 minutes ago</span>#}
+                            <span class="ti-check"><a></a></span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+                {% endif %}
+        {% endfor %}
+    </ul>
+</li>

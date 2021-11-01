@@ -1,0 +1,5 @@
+<div class="btn-group btn-group-sm">
+    <a class="btn btn-primary btn-sm" href="{{ path('facture_show', {'id': row.id}) }}"><i class="fa fa-eye"></i></a>
+    <a class="btn btn-warning btn-sm" href="{{ path('printfacturepdf', {'id': row.id}) }}" target="_blank"><i class="fa fa-print"></i></a>
+    <a class="btn btn-danger btn-sm" href="{{ path('facture_edit', {'id': row.id}) }}"><i class="fa fa-trash"></i></a>
+</div>

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block page_title %}{{ 'label.rental_masse'|trans }}{% endblock %}
+{% block page_content %}
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">{{ 'label.rental_masse'|trans }}</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">{{ 'label.home'|trans }}</a></li>
+                        <li class="breadcrumb-item active">{{ 'label.rental_masse'|trans }}</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+<div class="card">
+    <div class="card-body">
+        {{ form_start(form) }}
+        {{ form_row(form.year) }}
+    <div class="form-group">
+        <div class="form-group" id="month_all">
+            <label for="listmonth">{{ 'label.month'|trans }}</label>
+            <div class="row" id="listmonth_all">
+                {% for local in months %}
+                    <div class="col-md-3">
+                        <label class="control-label" for="{{ local }}">{{ local }}</label>
+                        <div class="control-group">
+                            <input id="{{ local }}" data-amount="{{ local }}" type="checkbox" name="{{ local }}"
+                                   value="{{ local }}">
+                        </div>
+                    </div>
+
+                {% endfor %}</div>
+        </div></div>
+        {{ form_end(form) }}
+        <div class="pull-right">
+            <button type="reset" class="btn btn-warning "><i
+                        class="nc-icon nc-simple-remove"></i> {{ 'button.cancel'|trans }}
+            </button>
+            <button type="button" class="btn btn-primary " id="save_rental_all"><i
+                        class="nc-icon nc-simple-add"></i> {{ "button.save"|trans}}</button>
+        </div>
+    </div></div>
+    {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'rental/javascript.html.twig' %}
+{% endblock %}
+
+

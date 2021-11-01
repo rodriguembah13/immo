@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %} Dashboard {% endblock %}
+{% block page_subtitle %}  {% endblock %}
+
+{% block page_content %}
+     <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+    <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-credit-card"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">{{ 'label.total_revenus'|trans }}</span>
+                <span class="info-box-number">
+                  10
+                  <small>{{ 'label.mensuel_revenus'|trans }}</small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-gradient-warning elevation-1"><i class="fas fa-calculator"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">{{ 'label.total_depense'|trans }}</span>
+                    <span class="info-box-number">760
+                        <small>{{ 'label.mensuel_depense'|trans }}</small>
+                    </span>
+
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-gradient-cyan elevation-1"><i class="fas fa-map"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">{{ 'label.local'|trans }}</span>
+                    <span class="info-box-number">{{ locals }}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+
+        <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-pink elevation-1"><i class="fas fa-users-cog"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">{{ 'label.teanant'|trans }}</span>
+                    <span class="info-box-number">{{ tenants }}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </div>
+
+    {#<div class="row">
+        <div class="col-md-4" >
+            #}{# ... infobox widget, solid background ... #}{#
+            {% embed '@AdminLTE/Widgets/infobox-widget.html.twig'  with {
+                'solid' : 'red',
+                'icon'  : 'far fa-map',
+            } %}
+
+                {% block box_text %}{{ 'dashboard.local'|trans({}, 'messages') }}{% endblock %}
+                {% block box_number %} {{ locals }}{% endblock %}
+                {% block progress_description %}{% endblock %}
+            {% endembed %}
+
+        </div>
+        <div class="col-md-4">
+
+            #}{# ... infobox widget, colored icon ... #}{#
+            {% embed '@AdminLTE/Widgets/infobox-widget.html.twig'  with {
+                'solid' : 'aqua',
+                'icon'  : 'fas fa-users',
+            } %}
+                {% block box_text %}{{ 'dashboard.tenant'|trans({}, 'messages') }}{% endblock %}
+                {% block box_number %}{{ tenants }}{% endblock %}
+                {% block progress_description %}{% endblock %}
+            {% endembed %}
+        </div>
+        <div class="col-md-4 ">
+
+            #}{# ... infobox widget, colored icon ... #}{#
+            {% embed '@AdminLTE/Widgets/infobox-widget.html.twig'  with {
+                'color' : 'indigo',
+                'icon'  : 'fa fa-money-bill',
+            } %}
+                {% block box_text %}{{ 'dashboard.bill'|trans({}, 'messages') }}{% endblock %}
+                {% block box_number %}{{ bills }}{% endblock %}
+                {% block progress_description %}{% endblock %}
+            {% endembed %}
+        </div>
+    </div>#}
+    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+      </div></section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{asset('js/highcharts.js')}}"></script>
+    <script src="{{asset('js/exporting.js')}}"></script>
+    <script type="text/javascript">
+        {{ chart(chart) }}
+    </script>
+{% endblock %}

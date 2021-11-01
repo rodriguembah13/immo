@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ parent() }} - Import  {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page-header start -->
+            <div class="page-header card">
+                <div class="row align-items-end">
+                    <div class="col-lg-8">
+                        <div class="page-header-title">
+                            <i class="icofont icofont-layout bg-c-blue"></i>
+                            <div class="d-inline">
+                                <h4>Process import</h4>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="page-header-breadcrumb">
+                            <ul class="breadcrumb-title">
+                                <li class="breadcrumb-item">
+                                    <a href="{{ path('homepage') }}">
+                                        <i class="icofont icofont-home"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="{{ path('viewtemp') }}"></a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page-header end -->
+            <div class="page-body">
+                <div class="card">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-block table-responsive">
+                       <table class="table table-bordered">
+                           <thead>
+                           <th>Element1</th>
+                           <th>Element2</th>
+                           <th>Element3</th>
+                           <th>Element4</th>
+                           <th>Element5</th>
+                           <th>Element6</th><th>Element7</th>
+                           <th>Element8</th>
+                           <th>Element9</th><th>Element10</th>
+                           </thead>
+                           <tbody>
+                           {% for temp in temps %}
+                           <tr>
+                               <td>{{ temp.element1 }}</td>
+                               <td>{{ temp.element2 }}</td>
+                               <td>{{ temp.element3 }}</td>
+                               <td>{{ temp.element4 }}</td>  <td>{{ temp.element5 }}</td>
+                               <td>{{ temp.element6 }}</td>  <td>{{ temp.element7 }}</td>
+                               <td>{{ temp.element8 }}</td>  <td>{{ temp.element9 }}</td>
+                               <td>{{ temp.element10 }}</td>
+                           </tr>
+                           {% endfor %}
+                           </tbody>
+                       </table>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-sm btn-warning float-right" href="#" id="save_import"><i class="icofont icofont-save"></i>
+                            Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    {% include 'import/javascript.html.twig' %}
+{% endblock %}

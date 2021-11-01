@@ -1,0 +1,18 @@
+<div class="btn-group btn-group-sm">
+    {% if row.asContrat == 0 %}
+        <a class="btn btn-success btn-sm"
+           href="{{ path('tenant_contrat', {'id': row.id}) }}" ><i
+                    class="fa fa-file-alt"></i></a>
+    {% else %}
+        <a class="btn btn-warning btn-sm"
+           href="{{ path('tenantcontratpdf', {'id': row.id}) }}" target="_blank"><i
+                    class="fa fa-print"></i></a>
+    {% endif %}
+    <a class="btn btn-primary btn-sm"
+       href="{{ path('tenant_show', {'id': row.id}) }}"><i class="fa fa-eye"></i></a>
+    <a class="btn btn-success btn-sm"
+       href="{{ path('tenant_edit', {'id': row.id}) }}"><i
+                class="fa fa-edit"></i></a>
+    <a class="btn btn-danger btn-sm"
+       href="{{ path('tenant_contrat', {'id': row.id}) }}"><i class="fa fa-trash"></i></a>
+</div>
